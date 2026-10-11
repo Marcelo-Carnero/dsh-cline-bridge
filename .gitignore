@@ -16,6 +16,8 @@ rg*.err
 pk.out
 pk.err
 release-gate.*
+*.out
+*.err
 
 .DS_Store
 Thumbs.db

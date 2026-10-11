@@ -36,4 +36,9 @@ to follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   at server start.
 - Every approval grant is `allowed-once`, scoped to a single tool call.
 
+### Dependencies
+
+- Bumped `@modelcontextprotocol/sdk` to `1.32.1` to clear the advisory flagged
+  by `npm audit` in CI; typecheck and the full 44-test suite pass against it.
+
 [0.1.0]: https://github.com/Marcelo-Carnero/dsh-cline-bridge/releases/tag/v0.1.0

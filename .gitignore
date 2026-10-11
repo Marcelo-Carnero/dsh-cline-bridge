@@ -1,0 +1,21 @@
+node_modules/
+lib/
+*.tsbuildinfo
+*.token
+*.log
+*.tgz
+.env
+.env.*
+!.env.example
+release-test.tmp/
+
+# Local scratch files from development (reference copies, run logs, pack output)
+ref-*
+rg*.out
+rg*.err
+pk.out
+pk.err
+release-gate.*
+
+.DS_Store
+Thumbs.db

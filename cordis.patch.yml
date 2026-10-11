@@ -1,0 +1,23 @@
+# dsh-cline-bridge bundle patch.
+#
+# Only insert the bridge row. dsh-web-app already mounts storage / workspace /
+# session-projection-cache; a second insert of those ids crashes the loader
+# (`duplicate loader entry id: storage`).
+#
+# A local MCP client (Cline) connects directly to the loopback MCP endpoint
+# (Streamable HTTP) served by this plugin.
+- insert:
+    - id: cline-bridge
+      name: 'dsh-cline-bridge'
+      config:
+        transport: http
+        host: 127.0.0.1
+        port: 3457
+        authMode: token
+        authToken: ''
+        authTokenEnv: DSH_CLINE_BRIDGE_TOKEN
+        tokenFile: ''
+        resultMaxChars: 8000
+        resultMaxItems: 50
+        sessionMaxItems: 20
+        sessionMaxChars: 4000

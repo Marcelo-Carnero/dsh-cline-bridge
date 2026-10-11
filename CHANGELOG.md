@@ -41,4 +41,12 @@ to follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Bumped `@modelcontextprotocol/sdk` to `1.32.1` to clear the advisory flagged
   by `npm audit` in CI; typecheck and the full 44-test suite pass against it.
 
+### Fixed
+
+- `npm test` now compiles first via a `pretest` hook. CI installs with
+  `npm ci --ignore-scripts` (so `prepare` never builds `lib/`) and the test
+  suite imports the compiled `lib/*.js`; without the hook the Test step failed
+  with `ERR_MODULE_NOT_FOUND` on a clean checkout. The hook makes `npm test`
+  self-sufficient locally and in CI alike.
+
 [0.1.0]: https://github.com/Marcelo-Carnero/dsh-cline-bridge/releases/tag/v0.1.0

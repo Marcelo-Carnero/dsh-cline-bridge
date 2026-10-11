@@ -1,5 +1,8 @@
 # dsh-cline-bridge
 
+[![CI](https://github.com/Marcelo-Carnero/dsh-cline-bridge/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Marcelo-Carnero/dsh-cline-bridge/actions/workflows/ci.yml)
+[![Security](https://github.com/Marcelo-Carnero/dsh-cline-bridge/actions/workflows/security.yml/badge.svg?branch=main)](https://github.com/Marcelo-Carnero/dsh-cline-bridge/actions/workflows/security.yml)
+
 Lets **Cline** (or any local MCP client) create, continue, supervise and stop
 **DeepSeek Harness (DSH)** agent sessions over the standard MCP protocol.
 

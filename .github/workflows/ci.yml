@@ -25,7 +25,7 @@ jobs:
           node-version: '22'
           cache: npm
 
-      - name: Install (ignore scripts: build runs explicitly below)
+      - name: Install (ignore scripts, build runs explicitly below)
         run: npm ci --ignore-scripts --no-audit --no-fund
 
       - name: Typecheck

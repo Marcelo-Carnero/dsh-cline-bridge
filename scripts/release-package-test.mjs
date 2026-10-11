@@ -66,13 +66,21 @@ function fail(message) {
  * Locate npm's own JS CLI (`npm-cli.js`), so the pack step can run it with this
  * same node binary. A `.cmd` shim under a shell on Windows can hang when the
  * parent redirects the child's stdio, so the shim is never used here.
- * Resolution order: a locally installed npm, then the npm bundled next to the
- * running node binary.
+ *
+ * The bundled npm sits next to the node binary, but the layout differs per OS:
+ *   Windows : <dir(node)>/node_modules/npm/bin/npm-cli.js
+ *   Linux   : <dir(node)>/../lib/node_modules/npm/bin/npm-cli.js   (apt/node tarball)
+ *   nvm/mac : <dir(node)>/../lib/node_modules/npm/bin/npm-cli.js
+ * A locally installed npm under the project always wins when present, so the
+ * gate behaves identically on a dev box and on a CI runner.
  */
 function findNpmCli() {
+  const nodeDir = dirname(process.execPath);
   const candidates = [
     join(root, 'node_modules', 'npm', 'bin', 'npm-cli.js'),
-    join(dirname(process.execPath), 'node_modules', 'npm', 'bin', 'npm-cli.js'),
+    join(nodeDir, 'node_modules', 'npm', 'bin', 'npm-cli.js'),
+    join(nodeDir, '..', 'lib', 'node_modules', 'npm', 'bin', 'npm-cli.js'),
+    join(nodeDir, '..', 'libexec', 'lib', 'node_modules', 'npm', 'bin', 'npm-cli.js'),
   ];
   for (const candidate of candidates) {
     if (existsSync(candidate)) return candidate;

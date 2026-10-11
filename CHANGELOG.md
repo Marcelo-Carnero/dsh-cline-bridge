@@ -48,5 +48,11 @@ to follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   suite imports the compiled `lib/*.js`; without the hook the Test step failed
   with `ERR_MODULE_NOT_FOUND` on a clean checkout. The hook makes `npm test`
   self-sufficient locally and in CI alike.
+- The release gate now locates the bundled npm across OS layouts. It only
+  looked beside the node binary (`<dir>/node_modules/npm`), which is the Windows
+  arrangement; on the Linux CI runner npm ships at `<dir>/../lib/node_modules/npm`,
+  so the pack step aborted before it could start. It now also checks the
+  lib/libexec layouts, so `npm run test:release` runs on macOS, Linux and Windows
+  alike.
 
 [0.1.0]: https://github.com/Marcelo-Carnero/dsh-cline-bridge/releases/tag/v0.1.0
